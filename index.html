@@ -254,14 +254,15 @@
     
     <section id="demo-video" class="demo-video">
         <h2>Demo Video</h2>
-        <!-- 延迟加载：点击后再插入 iframe，绕过部分拦截/代理规则 -->
-        <div id="yt-embed" data-video-id="vHuAzNxmfKc" style="text-align: center;">
-            <button id="yt-load-btn" style="padding: 8px 14px; cursor: pointer;">点击加载视频</button>
-            <p style="margin-top: 8px; font-size: 0.9em;">
-                若无法加载，
-                <a href="https://www.youtube-nocookie.com/embed/vHuAzNxmfKc" target="_blank" rel="noopener">点此在新标签播放</a>
-            </p>
-        </div>
+        <iframe width="560" height="315"
+                src="https://www.youtube-nocookie.com/embed/vHuAzNxmfKc"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                loading="lazy">
+        </iframe>
     </section>
     
     <section id="comparison-case" class="comparison-case">
@@ -413,26 +414,7 @@
                 }
             });
 
-            // 延迟加载 YouTube：点击后再插入 iframe
-            const ytRoot = document.getElementById('yt-embed');
-            const ytBtn = document.getElementById('yt-load-btn');
-            if (ytRoot && ytBtn) {
-                ytBtn.addEventListener('click', function() {
-                    const videoId = ytRoot.getAttribute('data-video-id');
-                    if (!videoId) return;
-                    const iframe = document.createElement('iframe');
-                    iframe.width = '560';
-                    iframe.height = '315';
-                    iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}`;
-                    iframe.title = 'YouTube video player';
-                    iframe.frameBorder = '0';
-                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-                    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-                    iframe.allowFullscreen = true;
-                    ytRoot.innerHTML = '';
-                    ytRoot.appendChild(iframe);
-                });
-            }
+            // 已改为直接嵌入 iframe，无需点击加载
         });
     </script>
 </body>
